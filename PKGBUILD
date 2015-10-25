@@ -34,15 +34,12 @@ build() {
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
 
-  rm -rf "$srcdir/$_gitname-build"
-  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-  
-  cd "$srcdir/$_gitname-build"  
+  cd "$srcdir/$_gitname"
   scons qtdir=/usr/lib/qt4 prefix=/usr install_root="$pkgdir/usr" tuned=1
 }
 
 package() {
-  cd "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname"
   scons qtdir=/usr/lib/qt4 prefix=/usr install_root="$pkgdir/usr" install
 }
 
